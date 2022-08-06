@@ -5,7 +5,7 @@
 
     <div class="row my-3">
         <div class="col-6">
-            <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+            <a href="{% url 'pybo:question_create' %}" class="btn btn-secondary">질문 등록하기</a>
         </div>
         <div class="col-6">
             <div class="input-group">
@@ -19,33 +19,38 @@
     <!-- 채널 표시 -->
     <div class="row my-3">
         <div class="col-6">
-            <table class="table">
-
+            <table class="table table-hover table-striped">
+            <a href="{% url 'pybo:nomi' %}">노미카이 채널</a>
                 <thead>
                 <tr class="text-center thead-dark">
-                    <th>번호</th>
-                    <th style="width:50%">제목</th>
-                    <th>글쓴이</th>
-                    <th>작성일지</th>
+                    <th style="width:14%"><font size="4">번호</font></th>
+                    <th style="width:50%"><font size="4">제목</font></th>
+                    <th style="width:12%"><font size="4">글쓴이</font></th>
+                    <th style="width:25%"><font size="4">작성일지</font></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% if nomi_question_list %}
                 {% for question in nomi_question_list %}
-                <tr class="text-center">
-                    <td>
+                    <tr class="text-center">
+                        <td><strong>
                         <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
-                        {{ forloop.counter }}
+                        {{ nomi_question_list.count|sub:forloop.counter0 }}
+                        </strong>
                     </td>
                     <td class="text-left">
-                        <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+
+                        <a href="{% url 'pybo:detail' question.id %}"><span class="text-muted">{{ question.subject }}</a>
+
                         {% if question.answer_set.count > 0 %}
+                        </span>
                         <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
                         {% endif %}
+
                     </td>
                     <td class="..userName">
-                        <a href="{% url 'pybo:tag' %}">{{ question.author.username }}</a>
-                        </td>
+                        <a href="javascript:void(0);" onclick="name_search(this)"><span class="text-info">{{ question.author.username }}</span></a>
+                    </td>
                     <td>{{ question.create_date }}</td>
                 </tr>
                 {% endfor %}
@@ -59,32 +64,39 @@
         </div>
 
         <div class="col-6">
-            <table class="table">
+            <a href="{% url 'pybo:worry' %}">고민 채널</a>
+            <table class="table table-hover table-striped">
 
                 <thead>
                 <tr class="text-center thead-dark">
-                    <th>번호</th>
-                    <th style="width:50%">제목</th>
-                    <th>글쓴이</th>
-                    <th>작성일지</th>
+                    <th style="width:14%"><font size="4">번호</font></th>
+                    <th style="width:50%"><font size="4">제목</font></th>
+                    <th style="width:12%"><font size="4">글쓴이</font></th>
+                    <th style="width:25%"><font size="4">작성일지</font></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% if worry_question_list %}
                 {% for question in worry_question_list %}
                 <tr class="text-center">
-                    <td>
-                        {{ forloop.counter }}
+                        <td><strong>
+                        <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                        {{ worry_question_list.count|sub:forloop.counter0 }}
+                        </strong>
                     </td>
                     <td class="text-left">
-                        <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+
+                        <a href="{% url 'pybo:detail' question.id %}"><span class="text-muted">{{ question.subject }}</a>
+
                         {% if question.answer_set.count > 0 %}
+                        </span>
                         <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
                         {% endif %}
+
                     </td>
                     <td class="..userName">
-                        <a href="{% url 'pybo:tag' %}">{{ question.author.username }}</a>
-                        </td>
+                        <a href="javascript:void(0);" onclick="name_search(this)"><span class="text-info">{{ question.author.username }}</span></a>
+                    </td>
                     <td>{{ question.create_date }}</td>
                 </tr>
                 {% endfor %}
@@ -100,32 +112,39 @@
 
     <div class="row my-3">
         <div class="col-6">
-            <table class="table">
+            <a href="{% url 'pybo:deal' %}">중고거래 채널</a>
+            <table class="table table-hover table-striped">
 
                 <thead>
                 <tr class="text-center thead-dark">
-                    <th>번호</th>
-                    <th style="width:50%">제목</th>
-                    <th>글쓴이</th>
-                    <th>작성일지</th>
+                    <th style="width:14%"><font size="4">번호</font></th>
+                    <th style="width:50%"><font size="4">제목</font></th>
+                    <th style="width:12%"><font size="4">글쓴이</font></th>
+                    <th style="width:25%"><font size="4">작성일지</font></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% if deal_question_list %}
                 {% for question in deal_question_list %}
                 <tr class="text-center">
-                    <td>
-                        {{ forloop.counter }}
+                        <td><strong>
+                        <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                        {{ deal_question_list.count|sub:forloop.counter0 }}
+                        </strong>
                     </td>
                     <td class="text-left">
-                        <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+
+                        <a href="{% url 'pybo:detail' question.id %}"><span class="text-muted">{{ question.subject }}</a>
+
                         {% if question.answer_set.count > 0 %}
+                        </span>
                         <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
                         {% endif %}
+
                     </td>
                     <td class="..userName">
-                        <a href="{% url 'pybo:tag' %}">{{ question.author.username }}</a>
-                        </td>
+                        <a href="javascript:void(0);" onclick="name_search(this)"><span class="text-info">{{ question.author.username }}</span></a>
+                    </td>
                     <td>{{ question.create_date }}</td>
                 </tr>
                 {% endfor %}
@@ -139,32 +158,39 @@
         </div>
 
         <div class="col-6">
-            <table class="table">
+            <a href="{% url 'pybo:advice' %}">일본생활 조언 채널</a>
+            <table class="table table-hover table-striped">
 
                 <thead>
                 <tr class="text-center thead-dark">
-                    <th>번호</th>
-                    <th style="width:50%">제목</th>
-                    <th>글쓴이</th>
-                    <th>작성일지</th>
+                    <th style="width:14%"><font size="4">번호</font></th>
+                    <th style="width:50%"><font size="4">제목</font></th>
+                    <th style="width:12%"><font size="4">글쓴이</font></th>
+                    <th style="width:25%"><font size="4">작성일지</font></th>
                 </tr>
                 </thead>
                 <tbody>
                 {% if advice_question_list %}
                 {% for question in advice_question_list %}
                 <tr class="text-center">
-                    <td>
-                        {{ forloop.counter }}
+                        <td><strong>
+                        <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
+                        {{ advice_question_list.count|sub:forloop.counter0 }}
+                        </strong>
                     </td>
                     <td class="text-left">
-                        <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+
+                        <a href="{% url 'pybo:detail' question.id %}"><span class="text-muted">{{ question.subject }}</a>
+
                         {% if question.answer_set.count > 0 %}
+                        </span>
                         <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
                         {% endif %}
+
                     </td>
                     <td class="..userName">
-                        <a href="{% url 'pybo:tag' %}">{{ question.author.username }}</a>
-                        </td>
+                        <a href="javascript:void(0);" onclick="name_search(this)"><span class="text-info">{{ question.author.username }}</span></a>
+                    </td>
                     <td>{{ question.create_date }}</td>
                 </tr>
                 {% endfor %}
@@ -204,5 +230,15 @@ btn_search.addEventListener('click', function() {
     document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
     document.getElementById('searchForm').submit();
 });
+
+<!-- 작성자 이름 클릭 시 검색 -->
+function name_search(obj) {
+    console.log(obj.text);
+    document.getElementById('kw').value = obj.text;
+    document.getElementsByName('val').value = 1;
+    document.getElementById('searchForm').submit();
+}
+
+
 </script>
 {% endblock %}

@@ -4,10 +4,10 @@
 <div class="container my-3">
 
     <div class="row my-3">
-        <div class="col-6">
-            <a href="{% url 'pybo:question_create' %}" class="btn btn-primary">질문 등록하기</a>
+        <div class="col-7">
+            <a href="{% url 'pybo:question_create' %}" class="btn btn-secondary"><body>질문 등록하기</body></a>
         </div>
-        <div class="col-6">
+        <div class="col-5">
             <div class="input-group">
                 <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
                 <div class="input-group-append">
@@ -17,42 +17,52 @@
         </div>
     </div>
 
-    <table class="table">
+    <table class="table table-hover table-striped">
 
         <thead>
         <tr class="text-center thead-dark">
-            <th>번호</th>
-            <th style="width:50%">제목</th>
-            <th>글쓴이</th>
-            <th>작성일지</th>
+
+            <th style="width:14%"><font size="4">번호</font></th>
+            <th style="width:50%"><font size="4">제목</font></th>
+            <th style="width:12%"><font size="4">글쓴이</font></th>
+            <th style="width:25%"><font size="4">작성일지</font></th>
+            </font>
         </tr>
         </thead>
         <tbody>
         {% if question_list %}
         {% for question in question_list %}
         <tr class="text-center">
-            <td>
+            <td><strong>
                 <!-- 번호 = 전체건수 - 시작인덱스 - 현재인덱스 + 1 -->
                 {{ question_list.paginator.count|sub:question_list.start_index|sub:forloop.counter0|add:1 }}
+                </strong>
             </td>
             <td class="text-left">
-                <a href="{% url 'pybo:detail' question.id %}">{{ question.subject }}</a>
+
+                <a href="{% url 'pybo:detail' question.id %}"><span class="text-muted">{{ question.subject }}</a>
+
                 {% if question.answer_set.count > 0 %}
+                </span>
                 <span class="text-danger small ml-2">{{ question.answer_set.count }}</span>
                 {% endif %}
+
             </td>
             <td class="..userName">
-                <a href="{% url 'pybo:tag' %}">{{ question.author.username }}</a>
-                </td>
+                <a href="javascript:void(0);" onclick="name_search(this)"><span class="text-info">{{ question.author.username }}</span></a>
+            </td>
             <td>{{ question.create_date }}</td>
         </tr>
         {% endfor %}
         {% else %}
         <tr>
             <td colspan="3">질문이 없습니다.</td>
-        </tr>
+        </tr class="tr-bordered">
+
         {% endif %}
+
         </tbody>
+
     </table>
 
     <!-- 작성자 이름 클릭 시 검색 -->
@@ -65,7 +75,7 @@
         {% if question_list.has_previous %}
         <li class="page-item">
             <a class="page-link" data-page="{{ question_list.previous_page_number }}"
-           href="javascript:void(0)">이전</a>
+           href="javascript:void(0)"><span class="text-muted">이전</span></a>
         </li>
         {% else %}
         <li class="page-item">
@@ -82,7 +92,8 @@
             </li>
             {% else %}
             <li class="page-item">
-                <a class="page-link" href="?page={{ page_number }}">{{ page_number }}</a>
+                <a class="page-link" href="?page={{ page_number }}"><span class="text-muted">{{ page_number }}</span></a>
+
             </li>
             {% endif %}
         {% endif %}
@@ -91,11 +102,11 @@
         {% if question_list.has_next %}
         <li class="page-item">
             <a class="page-link" data-page="{{ question_list.next_page_number }}"
-           href="javascript:void(0)">다음</a>
+           href="javascript:void(0)"><span class="text-muted">다음</span></a>
         </li>
         {% else %}
         <li class="page-item disabled">
-            <a class="page-link" tabindex="-1" aria-disabled="true" href="#">다음</a>
+            <a class="page-link" tabindex="-1" aria-disabled="true" href="#"><span class="text-muted">다음</span></a>
         </li>
         {% endif %}
 
@@ -104,6 +115,7 @@
 </div>
 <form id="searchForm" method="get" action="{% url 'index' %}">
     <input type="hidden" id="kw" name="kw" value="{{ kw|default_if_none:'' }}">
+    <input type="hidden" id="val" name="val" value="{{ val|default_if_none:'' }}">
     <input type="hidden" id="page" name="page" value="{{ page }}">
 </form>
 {% endblock %}
@@ -122,5 +134,13 @@ btn_search.addEventListener('click', function() {
     document.getElementById('page').value = 1;  // 검색버튼을 클릭할 경우 1페이지부터 조회한다.
     document.getElementById('searchForm').submit();
 });
+
+<!-- 작성자 이름 클릭 시 검색 -->
+function name_search(obj) {
+    console.log(obj.text);
+    document.getElementById('kw').value = obj.text;
+    document.getElementsByName('val').value = 1;
+    document.getElementById('searchForm').submit();
+}
 </script>
 {% endblock %}
