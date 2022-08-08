@@ -1,0 +1,14 @@
+Watching for file changes with StatReloader
+Performing system checks...
+
+System check identified no issues (0 silenced).
+August 08, 2022 - 14:13:29
+Django version 4.1, using settings 'config.settings.local'
+Starting development server at http://127.0.0.1:8000/
+Quit the server with CONTROL-C.
+[08/Aug/2022 14:13:34] "GET /pybo/ HTTP/1.1" 200 9299
+[08/Aug/2022 14:13:35] "GET /pybo/ HTTP/1.1" 200 9299
+[08/Aug/2022 14:13:36] "GET /pybo/nomi/ HTTP/1.1" 200 5194
+[08/Aug/2022 14:13:38] "GET /pybo/ HTTP/1.1" 200 9299
+[08/Aug/2022 14:14:28] "GET /pybo/ HTTP/1.1" 200 9299
+[08/Aug/2022 14:14:29] "GET /pybo/nomi/ HTTP/1.1" 200 5194
