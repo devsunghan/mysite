@@ -21,7 +21,7 @@
         <div class="col-1"><!-- 추천영역 -->
             <div class="bg-light text-center p-3 border font-weight-bolder mb-1">{{question.voter.count}}</div>
             <a href="#" data-uri="{% url 'pybo:vote_question' question.id %}"
-                class="recommend btn btn-sm btn-secondary btn-block my-1">추천</a>
+                class="recommend btn btn-sm btn-secondary btn-block my-1">いいね</a>
         </div>
         <div class="col-11"><!-- 질문영역 -->
         <!-- 질문영역 -->
@@ -32,7 +32,7 @@
             <div class="d-flex justify-content-end">
                 {% if question.modify_date %}
                 <div class="badge badge-light p-2 text-left mx-3">
-                    <div class="mb-2">수정시간</div>
+                    <div class="mb-2">修正日付</div>
                     <div>{{ question.modify_date }}</div>
                 </div>
                 {% endif %}
@@ -44,7 +44,7 @@
             {% if request.user == question.author %}
             <div class="my-3">
                 <a href="{% url 'pybo:question_modify' question.id %}"
-                   class="btn btn-sm btn-outline-secondary">수정</a>
+                   class="btn btn-sm btn-outline-secondary">修正</a>
                 <a href="#" class="delete btn btn-sm btn-outline-secondary"
                 data-uri="{% url 'pybo:question_delete' question.id %}">
                 삭제</a>
@@ -64,9 +64,9 @@
                         {% endif %}
                     </span>
                     {% if request.user == comment.author %}
-                    <a href="{% url 'pybo:comment_modify_question' comment.id %}" class="small">수정</a>
+                    <a href="{% url 'pybo:comment_modify_question' comment.id %}" class="small">修正</a>
                     <a href="#" class="small delete"
-                        data-uri="{% url 'pybo:comment_delete_question' comment.id %}">삭제</a>
+                        data-uri="{% url 'pybo:comment_delete_question' comment.id %}">削除</a>
                         {% endif %}
                         </div>
                     {% endfor %}
@@ -74,7 +74,7 @@
                 {% endif %}
             <div>
                 <a href="{% url 'pybo:comment_create_question' question.id %}"
-                   class="small"><small>댓글 추가 ..</small></a> <!-- 댓글 추가 링크 -->
+                   class="small"><small>コメント..</small></a> <!-- 댓글 추가 링크 -->
             </div>
                 <!-- 질문 댓글 end -->
                 </div>
@@ -82,7 +82,7 @@
 
         </div>
     </div>
-    <h5 class="border-bottom my-3 py-2">{{ question.answer_set.count }}개의 답변이 있습니다.</h5>
+    <h5 class="border-bottom my-3 py-2">{{ question.answer_set.count }}つのコメントがあります.</h5>
     {% for answer in question.answer_set.all %}
     <a name="answer_{{ answer.id }}"></a>
     <div class="card my-3">
@@ -103,9 +103,9 @@
             {% if request.user == answer.author %}
             <div class="my-3">
                 <a href="{% url 'pybo:answer_modify' answer.id %}"
-                class="btn btn-sm btn-outline-secondary">수정</a>
+                class="btn btn-sm btn-outline-secondary">修正</a>
                 <a href="#" class="delete btn btn-sm btn-outline-secondary"
-                   data-uri="{% url 'pybo:answer_delete' answer.id %}">삭제</a>
+                   data-uri="{% url 'pybo:answer_delete' answer.id %}">削除</a>
             </div>
             {% endif %}
 
@@ -122,8 +122,8 @@
                         {% endif %}
                     </span>
                     {% if request.user == comment.author %}
-                    <a href="{% url 'pybo:comment_modify_answer' comment.id %}" class="small">수정</a>
-                    <a href="#" class="small delete" data-uri="{% url 'pybo:comment_delete_answer' comment.id %}">삭제</a>
+                    <a href="{% url 'pybo:comment_modify_answer' comment.id %}" class="small">修正</a>
+                    <a href="#" class="small delete" data-uri="{% url 'pybo:comment_delete_answer' comment.id %}">削除</a>
                     {% endif %}
                 </div>
             {% endfor %}
@@ -131,7 +131,7 @@
             {% endif %}
             <div>
                 <a href="{% url 'pybo:comment_create_answer' answer.id %}"
-                   class="small"><small>댓글 추가 ..</small></a>
+                   class="small"><small>コメント..</small></a>
             </div>
         </div>
     </div>
@@ -156,7 +156,7 @@
           rows="10"></textarea>
 
         </div>
-        <input type="submit" value="답변등록" class="btn btn-primary">
+        <input type="submit" value="コメント" class="btn btn-primary">
     </form>
 </div>
 {% endblock %}
@@ -164,13 +164,13 @@
 <script type='text/javascript'>
 $(document).ready(function(){
     $(".recommend").on('click', function(){
-        if(confirm("정말로 추천하시겠습니까?")) {
+        if(confirm("本当にお勧めしますか?")) {
             location.href = $(this).data('uri');
         }
     })
 
     $(".delete").on('click', function(){
-        if(confirm("정말로 삭제하시겠습니까?")){
+        if(confirm("削除でよろしいでしょうか?")){
             location.href = $(this).data('uri');
         }
     });

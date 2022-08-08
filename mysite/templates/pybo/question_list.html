@@ -5,13 +5,13 @@
 
     <div class="row my-3">
         <div class="col-7">
-            <a href="{% url 'pybo:question_create' %}" class="btn btn-secondary"><body>질문 등록하기</body></a>
+            <a href="{% url 'pybo:question_create' %}" class="btn btn-secondary"><body>投稿</body></a>
         </div>
         <div class="col-5">
             <div class="input-group">
                 <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
+                    <button class="btn btn-outline-secondary" type="button" id="btn_search">検索</button>
                 </div>
             </div>
         </div>
@@ -22,10 +22,10 @@
         <thead>
         <tr class="text-center thead-dark">
 
-            <th style="width:14%"><font size="4">번호</font></th>
-            <th style="width:50%"><font size="4">제목</font></th>
-            <th style="width:12%"><font size="4">글쓴이</font></th>
-            <th style="width:25%"><font size="4">작성일지</font></th>
+            <th style="width:14%"><font size="4">番号</font></th>
+            <th style="width:50%"><font size="4">タイトル</font></th>
+            <th style="width:12%"><font size="4">作者</font></th>
+            <th style="width:25%"><font size="4">日付</font></th>
             </font>
         </tr>
         </thead>
@@ -75,7 +75,7 @@
         {% if question_list.has_previous %}
         <li class="page-item">
             <a class="page-link" data-page="{{ question_list.previous_page_number }}"
-           href="javascript:void(0)"><span class="text-muted">이전</span></a>
+           href="javascript:void(0)"><span class="text-muted">前</span></a>
         </li>
         {% else %}
         <li class="page-item">
@@ -102,7 +102,7 @@
         {% if question_list.has_next %}
         <li class="page-item">
             <a class="page-link" data-page="{{ question_list.next_page_number }}"
-           href="javascript:void(0)"><span class="text-muted">다음</span></a>
+           href="javascript:void(0)"><span class="text-muted">次</span></a>
         </li>
         {% else %}
         <li class="page-item disabled">

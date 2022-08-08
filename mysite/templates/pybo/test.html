@@ -4,14 +4,17 @@
 <div class="container my-3">
 
     <div class="row my-3">
-        <div class="col-6">
-            <a href="{% url 'pybo:question_create' %}" class="btn btn-secondary">질문 등록하기</a>
+        <div class="col-2">
+            <a href="{% url 'pybo:question_create' %}" class="btn btn-secondary">投稿</a>
+        </div>
+        <div class="col-4">
+            <a href="javascript:void(0);" onclick="show_alert()" style="border-bottom: 1px">操作説明</a>
         </div>
         <div class="col-6">
             <div class="input-group">
                 <input type="text" id="search_kw" class="form-control" value="{{ kw|default_if_none:'' }}">
                 <div class="input-group-append">
-                    <button class="btn btn-outline-secondary" type="button" id="btn_search">찾기</button>
+                    <button class="btn btn-outline-secondary" type="button" id="btn_search">検索</button>
                 </div>
             </div>
         </div>
@@ -20,13 +23,13 @@
     <div class="row my-3">
         <div class="col-6">
             <table class="table table-hover table-striped">
-            <a href="{% url 'pybo:nomi' %}">노미카이 채널</a>
+            <a href="{% url 'pybo:nomi' %}">飲み会チャンネル</a>
                 <thead>
                 <tr class="text-center thead-dark">
-                    <th style="width:14%"><font size="4">번호</font></th>
-                    <th style="width:50%"><font size="4">제목</font></th>
-                    <th style="width:12%"><font size="4">글쓴이</font></th>
-                    <th style="width:25%"><font size="4">작성일지</font></th>
+                    <th style="width:14%"><font size="4">番号</font></th>
+                    <th style="width:50%"><font size="4">タイトル</font></th>
+                    <th style="width:12%"><font size="4">作者</font></th>
+                    <th style="width:25%"><font size="4">日付</font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -64,15 +67,15 @@
         </div>
 
         <div class="col-6">
-            <a href="{% url 'pybo:worry' %}">고민 채널</a>
+            <a href="{% url 'pybo:worry' %}">お悩み掲示板</a>
             <table class="table table-hover table-striped">
 
                 <thead>
                 <tr class="text-center thead-dark">
-                    <th style="width:14%"><font size="4">번호</font></th>
-                    <th style="width:50%"><font size="4">제목</font></th>
-                    <th style="width:12%"><font size="4">글쓴이</font></th>
-                    <th style="width:25%"><font size="4">작성일지</font></th>
+                    <th style="width:14%"><font size="4">番号</font></th>
+                    <th style="width:50%"><font size="4">タイトル</font></th>
+                    <th style="width:12%"><font size="4">作者</font></th>
+                    <th style="width:25%"><font size="4">日付</font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -112,15 +115,15 @@
 
     <div class="row my-3">
         <div class="col-6">
-            <a href="{% url 'pybo:deal' %}">중고거래 채널</a>
+            <a href="{% url 'pybo:deal' %}">中古品売買チャンネル</a>
             <table class="table table-hover table-striped">
 
                 <thead>
                 <tr class="text-center thead-dark">
-                    <th style="width:14%"><font size="4">번호</font></th>
-                    <th style="width:50%"><font size="4">제목</font></th>
-                    <th style="width:12%"><font size="4">글쓴이</font></th>
-                    <th style="width:25%"><font size="4">작성일지</font></th>
+                    <th style="width:14%"><font size="4">番号</font></th>
+                    <th style="width:50%"><font size="4">タイトル</font></th>
+                    <th style="width:12%"><font size="4">作者</font></th>
+                    <th style="width:25%"><font size="4">日付</font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -158,15 +161,15 @@
         </div>
 
         <div class="col-6">
-            <a href="{% url 'pybo:advice' %}">일본생활 조언 채널</a>
+            <a href="{% url 'pybo:advice' %}">海外生活の助言チャンネル</a>
             <table class="table table-hover table-striped">
 
                 <thead>
                 <tr class="text-center thead-dark">
-                    <th style="width:14%"><font size="4">번호</font></th>
-                    <th style="width:50%"><font size="4">제목</font></th>
-                    <th style="width:12%"><font size="4">글쓴이</font></th>
-                    <th style="width:25%"><font size="4">작성일지</font></th>
+                    <th style="width:14%"><font size="4">番号</font></th>
+                    <th style="width:50%"><font size="4">タイトル</font></th>
+                    <th style="width:12%"><font size="4">作者</font></th>
+                    <th style="width:25%"><font size="4">日付</font></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -239,6 +242,9 @@ function name_search(obj) {
     document.getElementById('searchForm').submit();
 }
 
+function show_alert() {
+    alert('操作の説明');
+}
 
 </script>
 {% endblock %}

@@ -17,7 +17,7 @@ def question_create(request):
             question.author = request.user # author 속성에 로그인 계정 저장
             question.create_date = timezone.now()
             print('---------------------------')
-            print(request.POST.get('tag'))
+            print(question.create_date.strftime("%y/%m/%d %H/%M/%S"))
             print('---------------------------')
             question.tag = request.POST.get('tag')
             question.save()
