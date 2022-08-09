@@ -1,4 +1,7 @@
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 {% extends 'base.html' %}
+{% load static %}
 {% load pybo_filter %}
 {% block content %}
 <div class="container my-3">
@@ -59,7 +62,7 @@
                 {% endfor %}
                 {% else %}
                 <tr>
-                    <td colspan="3">질문이 없습니다.</td>
+                    <td colspan="3">空きページです。</td>
                 </tr>
                 {% endif %}
                 </tbody>
@@ -105,7 +108,7 @@
                 {% endfor %}
                 {% else %}
                 <tr>
-                    <td colspan="3">질문이 없습니다.</td>
+                    <td colspan="3">空きページです。</td>
                 </tr>
                 {% endif %}
                 </tbody>
@@ -153,7 +156,7 @@
                 {% endfor %}
                 {% else %}
                 <tr>
-                    <td colspan="3">질문이 없습니다.</td>
+                    <td colspan="3">空きページです。</td>
                 </tr>
                 {% endif %}
                 </tbody>
@@ -199,7 +202,7 @@
                 {% endfor %}
                 {% else %}
                 <tr>
-                    <td colspan="3">질문이 없습니다.</td>
+                    <td colspan="3">空きページです。</td>
                 </tr>
                 {% endif %}
                 </tbody>
@@ -220,6 +223,7 @@
 {% endblock %}
 {% block script %}
 <script type='text/javascript'>
+
 const page_elements = document.getElementsByClassName("page-link");
 Array.from(page_elements).forEach(function(element) {
     element.addEventListener('click', function() {
@@ -242,8 +246,27 @@ function name_search(obj) {
     document.getElementById('searchForm').submit();
 }
 
+
+
 function show_alert() {
-    alert('操作の説明');
+{#    alert('操作の説明\n' +#}
+{#        'チャンネルやタイトルをクリックすると\n' +#}
+{#        '詳細が表示されます。\n' +#}
+{#        '作者の名前をクリックすると\n' +#}
+{#        'その人が投稿したものを見ることができます。\n' +#}
+{#        '左上のボタンでログインや会員登録をすれば\n' +#}
+{#        '投稿することができます。\n' +#}
+{#        '' +#}
+{#        '');#}
+    Swal.fire({
+        icon: 'info',
+        html: "投稿する際には会員登録の後、ログイン機能をご利用ください。" +
+            "<br>" +  '<br>' + '<br>' +
+            '<button type="button" role="button" tabindex="0" class="btn btn-secondary">' + '次のページ' + '</button> ',
+        showCancelButton: false,
+        showConfirmButton: false,
+        imageUrl: "{% static 'setsumei1.png' %}",
+    })
 }
 
 </script>
