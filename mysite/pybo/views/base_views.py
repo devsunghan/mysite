@@ -150,3 +150,10 @@ def advice_page(request):
     context = {'question_list': page_obj, 'page': page}
 
     return render(request, 'pybo/question_list.html', context)
+
+def info_page(request):
+    """
+    소개 페이지
+    """
+    context = {}
+    return render(request, 'pybo/info.html', context)

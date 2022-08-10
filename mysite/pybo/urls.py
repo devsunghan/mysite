@@ -13,6 +13,7 @@ urlpatterns = [
     path('worry/', base_views.worry_page, name='worry'),
     path('deal/', base_views.deal_page, name='deal'),
     path('advice/', base_views.advice_page, name='advice'),
+    path('info/', base_views.info_page, name='info'),
 
     # question_views.py
     path('question/create/', question_views.question_create,

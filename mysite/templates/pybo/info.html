@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+    <div class="container">
+
+      <div class="starter-template">
+        <h1><br>ここはチーム「しろうとも」のウェブページです。</h1>
+        <p class="lead"><br>&nbsp;&nbsp;私達は今回のインタビューで頂いたアドバイスを基に、人との繋がりを作り、<br>&nbsp;&nbsp;不安を打ち明け、情報や意見を交換できるコミュニティー・プラットフォームを作りました。<br>&nbsp;&nbsp;インタビューの内容を掲示板に記載しましたので、「掲示板に移動」のボタンを押して、ご覧ください。</p>
+      </div>
+
+    </div>
+
+    <div class="row my-3">
+        <div class="col-2">
+        </div>
+        <div class="col-5">
+            <a href="{% url 'pybo:tag' %}" class="btn btn-secondary">掲示板に移動</a>
+        </div>
+    </div>
+
+
+{% endblock %}
